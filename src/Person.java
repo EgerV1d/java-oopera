@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class Person {
     protected String name;
     protected String surname;
@@ -30,5 +32,27 @@ public class Person {
     public enum Gender {
         MALE,
         FEMALE
+    }
+
+    //переопределение методов в родительском классе
+    @Override
+    public String toString() {
+        return "Актер: " + name + " " + surname + " (" + height + " см)";
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Person person = (Person) obj;
+        return Objects.equals(name, person.name) &&
+                Objects.equals(surname, person.surname) &&
+                gender == person.gender &&
+                height == person.height;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, surname, gender, height);
     }
 }

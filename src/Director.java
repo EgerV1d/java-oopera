@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class Director extends Person{
     private int numberOfShows;
 
@@ -12,6 +14,18 @@ public class Director extends Person{
 
     @Override
     public String toString() {
-        return "Режиссер: " + name + " " + surname;
+        return "Режиссер: " + super.toString();
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!super.equals(obj)) return false;
+        return obj != null && getClass() == obj.getClass();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), numberOfShows);
+    }
+
 }

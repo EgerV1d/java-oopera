@@ -9,29 +9,23 @@ public class Actor extends Person{
 
     @Override
     public String toString() {
-        return "Актер: " + name + " " + surname + " (" + height + " см)";
+        return "Актер: " + super.toString();
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false; // можно оформить и так
-        Actor actor = (Actor) obj;
-        return Objects.equals(name, actor.name) &&
-                Objects.equals(surname, actor.surname) &&
-                height == actor.height;
+        if (!super.equals(obj)) return false;
+        return obj != null && getClass() == obj.getClass();
     }
+
+    /* IDEA предалагает заменить этот кусок в equals() на тот, что сейчас в переопределении. Я правильно понимаю,
+    что это просто укороченная версия с абсолютно такой же логикой?
+        if (obj == null || getClass() != obj.getClass()) return false;
+            return true; */
 
     @Override
     public int hashCode() {
-        int hash = 17;
-        if (name != null) {
-            hash = name.hashCode();
-        }
-        if (surname != null) {
-            hash = hash + surname.hashCode();
-        }
-        return hash;
+        return super.hashCode();
     }
 
 }
